@@ -1,0 +1,15 @@
+{
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    // override tslint-react rules here
+    "jsx-wrap-multiline": false,
+    "ordered-imports": false,
+    "no-submodule-imports": false,
+    "no-namespace": false,
+    "no-implicit-dependencies": false,
+    "object-literal-sort-keys": false,
+    "jsx-boolean-value": false,
+    "member-access": true,
+    "interface-name": false
+  }
+}

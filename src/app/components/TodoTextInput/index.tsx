@@ -24,7 +24,7 @@ export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoText
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(event: React.KeyboardEvent<HTMLInputElement>) {
+  public handleSubmit(event: React.KeyboardEvent<HTMLInputElement>) {
     const text = event.currentTarget.value.trim();
     if (event.which === 13) {
       this.props.onSave(text);
@@ -34,23 +34,23 @@ export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoText
     }
   }
 
-  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  public handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ text: event.target.value });
   }
 
-  handleBlur(event: React.FocusEvent<HTMLInputElement>) {
+  public handleBlur(event: React.FocusEvent<HTMLInputElement>) {
     const text = event.target.value.trim();
     if (!this.props.newTodo) {
       this.props.onSave(text);
     }
   }
 
-  render() {
+  public render() {
     return (
       <Input
         type="text"
         editing={this.props.editing}
-        autoFocus
+        autoFocus={true}
         placeholder={this.props.placeholder}
         value={this.state.text}
         onBlur={this.handleBlur}
