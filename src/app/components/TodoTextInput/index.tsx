@@ -1,6 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
-import * as style from './style.css';
+import styled, { css, StyledFunction } from 'styled-components';
 
 export namespace TodoTextInput {
   export interface Props {
@@ -47,18 +46,10 @@ export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoText
   }
 
   render() {
-    const classes = classNames(
-      {
-        [style.edit]: this.props.editing,
-        [style.new]: this.props.newTodo
-      },
-      style.normal
-    );
-
     return (
-      <input
-        className={classes}
+      <Input
         type="text"
+        editing={this.props.editing}
         autoFocus
         placeholder={this.props.placeholder}
         value={this.state.text}
@@ -69,3 +60,35 @@ export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoText
     );
   }
 }
+
+export interface InputProps {
+  editing?: boolean;
+}
+
+const input: StyledFunction<InputProps & React.HTMLProps<HTMLInputElement>> = styled.input;
+
+const Input = input`
+  position: relative;
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  border: 0;
+  outline: none;
+  color: inherit;
+  padding: 6px;
+  border: 1px solid #999;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+  ${(props) =>
+    props.editing &&
+    css`
+      padding: 16px 16px 16px 60px;
+      border: none;
+      background: rgba(0, 0, 0, 0.003);
+      box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+    `}
+`;
