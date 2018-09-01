@@ -7,6 +7,8 @@ import { RootState } from 'app/reducers';
 import { TodoModel } from 'app/models';
 import { omit } from 'app/utils';
 
+import { Form } from 'app/components/Form';
+
 const FILTER_VALUES = (Object.keys(TodoModel.Filter) as Array<keyof typeof TodoModel.Filter>).map(
   (key) => TodoModel.Filter[key]
 );
@@ -54,7 +56,7 @@ export class App extends React.Component<App.Props> {
   public render() {
     return (
       <div>
-        <button>HogeFuga</button>
+        <Form />
       </div>
     );
   }

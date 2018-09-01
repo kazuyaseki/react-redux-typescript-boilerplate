@@ -50,7 +50,7 @@ export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoText
       <Input
         type="text"
         editing={this.props.editing}
-        autoFocus={true}
+        autoFocus
         placeholder={this.props.placeholder}
         value={this.state.text}
         onBlur={this.handleBlur}
