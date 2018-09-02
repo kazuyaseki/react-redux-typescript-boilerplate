@@ -28,7 +28,7 @@ const Second: React.SFC<InjectedFormikProps<FormProps, FormValues>> = ({
       value={values.password}
     />
     {touched.password && errors.password && <div>{errors.password}</div>}
-    <button onClick={onClick} disabled={isSubmitting}>
+    <button type="button" onClick={onClick} disabled={isSubmitting}>
       Next
     </button>
   </Wrapper>
@@ -40,6 +40,7 @@ const Wrapper = styled.div`
   height: 300px;
   border-radius: 16px;
   padding: 20px;
+  background-color: #fff;
 `;
 
 const Input = styled.input`

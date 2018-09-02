@@ -5,8 +5,6 @@ import * as Yup from 'yup';
 
 import Slider, { DIRECTIONS } from './Slider';
 
-import First from './formContents/First';
-import Second from './formContents/Second';
 import Final from './formContents/Final';
 
 interface FormValues {
@@ -17,20 +15,13 @@ interface FormValues {
 interface FormProps {
   login?: string;
   password?: string;
+  onSubmit: () => void;
 }
 
 const InnerForm: React.SFC<InjectedFormikProps<FormProps, FormValues>> = (props) => (
   <form onSubmit={props.handleSubmit}>
     <Slider
       slides={[
-        {
-          render: (next) => <First onClick={next} {...props} />,
-          fadeInFrom: DIRECTIONS.left
-        },
-        {
-          render: (next) => <Second onClick={next} {...props} />,
-          fadeInFrom: DIRECTIONS.left
-        },
         {
           render: () => <Final {...props} />,
           fadeInFrom: DIRECTIONS.left
@@ -57,12 +48,9 @@ export const Form = withFormik<FormProps, FormValues>({
       .required('Please input login name'),
     password: Yup.string()
       .max(8, '馬鹿め')
-      .required('Please input login name')
+      .required('Please input password')
   }),
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  handleSubmit: (values, { props, setSubmitting }) => {
+    props.onSubmit();
   }
 })(StyledForm);

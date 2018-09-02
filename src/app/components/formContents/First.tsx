@@ -3,7 +3,7 @@ import { InjectedFormikProps } from 'formik';
 import styled from 'styled-components';
 
 interface FormProps {
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 interface FormValues {
@@ -15,9 +15,7 @@ const First: React.SFC<InjectedFormikProps<FormProps, FormValues>> = ({
   onClick,
   handleChange,
   values,
-  touched,
-  errors,
-  isSubmitting
+  errors
 }) => (
   <Wrapper>
     <Input
@@ -27,8 +25,15 @@ const First: React.SFC<InjectedFormikProps<FormProps, FormValues>> = ({
       onChange={handleChange}
       value={values.login}
     />
-    {touched.login && errors.login && <div>{errors.login}</div>}
-    <button onClick={onClick} disabled={!errors.login && isSubmitting}>
+    {errors.login && <div>{errors.login}</div>}
+    <button
+      type="button"
+      onClick={() => {
+        if (!errors.login) {
+          onClick();
+        }
+      }}
+    >
       Next
     </button>
   </Wrapper>
@@ -40,6 +45,7 @@ const Wrapper = styled.div`
   height: 300px;
   border-radius: 16px;
   padding: 20px;
+  background-color: #fff;
 `;
 
 const Input = styled.input`
