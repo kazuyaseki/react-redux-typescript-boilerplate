@@ -2,11 +2,22 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { Form } from 'app/components/Form';
-import { helloWorld } from 'app/actions/helloWorld';
+import { bindActionCreators, Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { TodoActions } from 'app/actions';
+import { helloWorld } from '../../actions/helloWorld';
+import { omit } from 'app/utils';
 
-const AppContainer = (props: { text: string; dispatchHelloWorld: (hello: string) => void }) => (
+interface AppProps {
+  text: string;
+  helloWorld: (hello: string) => void;
+  actions: TodoActions;
+}
+
+const AppContainer = (props: AppProps) => (
   <div>
-    <Form onSubmit={() => props.dispatchHelloWorld('hello')} />
+    <input type="text" onChange={(e) => props.actions.addTodo({ text: e.target.value })} />
+    <Form onSubmit={() => props.helloWorld('hello')} />
   </div>
 );
 
@@ -16,11 +27,14 @@ const mapStateToProps = (state: { helloWorld: string }) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    dispatchHelloWorld: (hello: string) => dispatch(helloWorld(hello))
-  };
-};
+interface MyState {
+  hoge: string;
+}
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<MyState, void, Action>) => ({
+  actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch),
+  helloWorld: (hello: string) => dispatch(helloWorld(hello))
+});
 
 export default connect(
   mapStateToProps,

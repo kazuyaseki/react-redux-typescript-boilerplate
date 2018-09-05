@@ -63,6 +63,7 @@
     "redux-actions": "^2.6.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.5",
+    "typescript-fsa": "^3.0.0-beta-2",
     "yup": "^0.26.3"
   }
 }
