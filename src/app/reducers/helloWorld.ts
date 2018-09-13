@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { isType } from 'typescript-fsa';
-import { ActionType, helloWorldActions } from 'app/actions/helloWorld';
+import { helloWorldActions } from 'app/actions/helloWorld';
 
 // export const helloWorldReducer = (
 //   state: string = '',

@@ -1,7 +1,7 @@
-import { fetchHello, HelloResponse } from '../utils/api';
+// import { fetchHello } from '../utils/api';
 import actionCreatorFactory from 'typescript-fsa';
-import { Action, ActionCreator, Dispatch } from 'redux';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
 const actionCreator = actionCreatorFactory();
 
@@ -43,7 +43,7 @@ interface IState {
 export function helloWorld(hello: string) {
   return async (dispatch: ThunkDispatch<IState, void, Action>): Promise<Action> => {
     try {
-      const result = await fetchHello(hello);
+      // const result = await fetchHello(hello);
       return dispatch(helloWorldActions.done({ params: { foo: 2 }, result: { bar: 1 } }));
     } catch (error) {
       return dispatch(helloWorldActions.failed({ params: { foo: 2 }, error: { code: 1 } }));

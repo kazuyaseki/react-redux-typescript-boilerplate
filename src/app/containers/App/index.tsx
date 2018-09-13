@@ -17,6 +17,7 @@ interface AppProps {
 const AppContainer = (props: AppProps) => (
   <div>
     <input type="text" onChange={(e) => props.actions.addTodo({ text: e.target.value })} />
+    <button onClick={() => props.helloWorld('hello')}>Hello World</button>
     <Form onSubmit={() => props.helloWorld('hello')} />
   </div>
 );
